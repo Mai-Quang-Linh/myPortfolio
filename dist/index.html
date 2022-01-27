@@ -6,26 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hello I'm Linh</title>
     <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="./js/jquery.min.js"></script>
-    <script src="./js/portfolio.js"></script>
+    <script src="./js/portfolio.js" defer></script>
 </head>
 
 <body>
     <div class="body">
         <div id="navbar" class="navbar">
-            <div class="nav_links">
+            <div id="nav_links" class="nav_links">
                 <div class="icon_holder">
                     <img class="icon" src="./img/icon.png">
                 </div>
-                <div class="a_holder">
-                    <a href="">me</a>
-                </div>
-                <div class="a_holder">
-                    <a href="./project.html">my works</a>
-                </div>
-                <div class="a_holder">
-                    <a href="./cv.html">why me</a>
-                </div>
+                <navlink-item v-for="item in items" v-bind:data="item" v-bind:key="item.id"></navlink-item>
             </div>
             <div class="contact_box">
                 <div class="contact_icon_col">
@@ -34,16 +27,16 @@
                     </div>
                     <ul>
                         <li onmouseover="showIconTitle('icon_title1')" onmouseleave="hideIconTitle('icon_title1')">
-                            <img src="./img/mail_icon.png" class="contact icon mail">
+                            <img src="./img/mail_icon.png" class="contact icon">
                         </li>
                         <li onmouseover="showIconTitle('icon_title2')" onmouseleave="hideIconTitle('icon_title2')">
-                            <img src="./img/linkedin_icon.png" class="contact icon linkedin">
+                            <img src="./img/linkedin_icon.png" class="contact icon">
                         </li>
                         <li onmouseover="showIconTitle('icon_title3')" onmouseleave="hideIconTitle('icon_title3')">
-                            <img src="./img/facebook_icon.png" class="contact icon facebook">
+                            <img src="./img/facebook_icon.png" class="contact icon">
                         </li>
                         <li onmouseover="showIconTitle('icon_title4')" onmouseleave="hideIconTitle('icon_title4')">
-                            <img src="./img/github_icon.png" class="contact icon github">
+                            <img src="./img/github_icon.png" class="contact icon">
                         </li>
                     </ul>
                 </div>
