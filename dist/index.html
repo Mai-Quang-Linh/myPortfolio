@@ -20,40 +20,18 @@
                 </div>
                 <navlink-item v-for="item in items" v-bind:data="item" v-bind:key="item.id"></navlink-item>
             </div>
-            <div class="contact_box">
+            <div id="contact_box" class="contact_box">
                 <div class="contact_icon_col">
                     <div class="contact_title" onclick="showIcon(this)">
                         <span>contact me</span>
                     </div>
                     <ul>
-                        <li onmouseover="showIconTitle('icon_title1')" onmouseleave="hideIconTitle('icon_title1')">
-                            <img src="./img/mail_icon.png" class="contact icon">
-                        </li>
-                        <li onmouseover="showIconTitle('icon_title2')" onmouseleave="hideIconTitle('icon_title2')">
-                            <img src="./img/linkedin_icon.png" class="contact icon">
-                        </li>
-                        <li onmouseover="showIconTitle('icon_title3')" onmouseleave="hideIconTitle('icon_title3')">
-                            <img src="./img/facebook_icon.png" class="contact icon">
-                        </li>
-                        <li onmouseover="showIconTitle('icon_title4')" onmouseleave="hideIconTitle('icon_title4')">
-                            <img src="./img/github_icon.png" class="contact icon">
-                        </li>
+                        <contact-icon v-for="item in items" v-bind:data="item" v-bind:key="item.id"></contact-icon>
                     </ul>
                 </div>
                 <div class="icon_title">
                     <ul>
-                        <li id="icon_title1">
-                            <span>mai.quang.linh.hl97@gmail.com</span>
-                        </li>
-                        <li id="icon_title2">
-                            <span>linkedin</span>
-                        </li>
-                        <li id="icon_title3">
-                            <span>facebook</span>
-                        </li>
-                        <li id="icon_title4">
-                            <span>github</span>
-                        </li>
+                        <contact-icon-title v-for="item in items" v-bind:data="item" v-bind:key="item.id"></contact-icon-title>
                     </ul>
                 </div>
             </div>

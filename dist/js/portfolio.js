@@ -6,13 +6,12 @@ function showIcon(target) {
             $(target.parentElement).on("mouseover", function() {
                 $(this).off("mouseover");
                 $(this).on("mouseleave", function() {
-                    for (var i = 1; i <= 4; i++) {
+                    for (var i = 0; i < 4; i++) {
                         hideIconTitle("icon_title" + i);
                     }
                     this.parentElement.classList.remove("activated");
                     this.parentElement.classList.add("deactivated");
-                    var new_element = this.cloneNode(true);
-                    this.parentNode.replaceChild(new_element, this);
+                    $(this).off("mouseleave");
                 });
             });
         },
@@ -46,7 +45,7 @@ Vue.component('contact-icon', {
 
 Vue.component('contact-icon-title', {
     props: ['data'],
-    template: ` li id="icon_title{{data.id}}">
+    template: ` <li :id="'icon_title' + data.id">
                     <span>{{data.text}}</span>
                 </li>`
 });
@@ -70,29 +69,29 @@ var contactbox = new Vue({
                 id: 0,
                 imgSrc: "./img/mail_icon.png",
                 text: "mai.quang.linh.hl97@gmail.com",
-                mouseOver: function() { showIconTitle('icon_title1') },
-                mouseLeave: function() { hideIconTitle('icon_title1') }
+                mouseOver: function() { showIconTitle('icon_title0') },
+                mouseLeave: function() { hideIconTitle('icon_title0') }
             },
             {
                 id: 1,
                 imgSrc: "./img/linkedin_icon.png",
                 text: "linkedin",
-                mouseOver: function() { showIconTitle('icon_title2') },
-                mouseLeave: function() { hideIconTitle('icon_title2') }
+                mouseOver: function() { showIconTitle('icon_title1') },
+                mouseLeave: function() { hideIconTitle('icon_title1') }
             },
             {
                 id: 2,
                 imgSrc: "./img/facebook_icon.png",
                 text: "facebook",
-                mouseOver: function() { showIconTitle('icon_title3') },
-                mouseLeave: function() { hideIconTitle('icon_title3') }
+                mouseOver: function() { showIconTitle('icon_title2') },
+                mouseLeave: function() { hideIconTitle('icon_title2') }
             },
             {
                 id: 3,
                 imgSrc: "./img/github_icon.png",
                 text: "github",
-                mouseOver: function() { showIconTitle('icon_title4') },
-                mouseLeave: function() { hideIconTitle('icon_title4') }
+                mouseOver: function() { showIconTitle('icon_title3') },
+                mouseLeave: function() { hideIconTitle('icon_title3') }
             },
         ]
     }
