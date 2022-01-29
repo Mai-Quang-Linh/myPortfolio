@@ -127,12 +127,14 @@ a {
 }
 
 .navbar {
+  background: white;
   font-family: 'source-code';
   font-size: 17px;
   height: 70px;
-  top: 8px;
-  left: 8px;
-  right: 8px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 8px;
   bottom: auto;
   position: fixed;
   display: -webkit-inline-box;
@@ -177,6 +179,11 @@ a {
 .nav_links a {
   margin: 5px;
   padding: 5px;
+}
+
+.a_holder {
+  white-space: nowrap;
+  margin: 5% 0;
 }
 
 .icon_title {
@@ -290,5 +297,10 @@ a {
 
 .contact_title {
   padding: 8px;
+}
+
+.main {
+  padding-top: 70px;
+  font-family: 'source-code';
 }
 /*# sourceMappingURL=index.css.map */

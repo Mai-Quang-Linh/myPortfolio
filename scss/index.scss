@@ -70,12 +70,14 @@ a {
 }
 
 .navbar {
+    background: white;
     font-family: 'source-code';
     font-size: 17px;
     height: $nav-height;
-    top: 8px;
-    left: 8px;
-    right: 8px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 8px;
     bottom: auto;
     position: fixed;
     display: inline-flex;
@@ -103,6 +105,11 @@ a {
         margin: margin("m");
         padding: margin("m");
     }
+}
+
+.a_holder {
+    white-space: nowrap;
+    margin: 5% 0;
 }
 
 .icon_title {
@@ -184,4 +191,10 @@ a {
 
 .contact_title {
     padding: margin("l");
+}
+
+.main {
+    padding-top: 70px;
+    font-family: 'source-code';
+    .pause_writing {}
 }

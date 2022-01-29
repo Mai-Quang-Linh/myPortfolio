@@ -19,6 +19,58 @@ function showIcon(target) {
     );
 }
 
+function asyncSleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function print_text(print_into, text, delay) {
+    for (var char of text) {
+        await asyncSleep(delay);
+        $(print_into).append(char);
+    }
+}
+
+const about_me_text_p = "Hi, I'm Linh";
+const about_me_text_h2 = "I can be your";
+const about_me_text_h1 = ["SYSTEM ENGINEER", "FULL-STACK WEB DEVELOPER", "MOBILE DEVELOPER", "DESKTOP APPLICATION DEVELOPER", "SYSTEM ARCHITECT"];
+
+async function print_job_text() {
+    let index = 0;
+    while ($("#about_me>h1").prop("cycling") == "true") {
+        for (let char of about_me_text_h1[index]) {
+            await asyncSleep(50);
+            $("#about_me>h1").append(char);
+        }
+        await asyncSleep(1000);
+        for (let i in about_me_text_h1[index]) {
+            await asyncSleep(50);
+            $("#about_me>h1").text(about_me_text_h1[index].substring(0, about_me_text_h1[index].length - i - 1));
+        }
+        await asyncSleep(100);
+        index = (index + 1) % about_me_text_h1.length;
+    }
+}
+
+async function print_text_about_me() {
+    $("#about_me").html("");
+    await asyncSleep(200);
+    $("#about_me").append("<p></p>");
+    for (var char of about_me_text_p) {
+        await asyncSleep(50);
+        $("#about_me>p").append(char);
+    }
+    await asyncSleep(1000);
+    $("#about_me").append("<h2></h2>");
+    for (var char of about_me_text_h2) {
+        await asyncSleep(50);
+        $("#about_me>h2").append(char);
+    }
+    await asyncSleep(1000);
+    $("#about_me").append("<h1></h1>");
+    $("#about_me>h1").prop("cycling", "true");
+    print_job_text();
+}
+
 function showIconTitle(id) {
     $("#" + id).addClass("show");
     $("#" + id).removeClass("hide");
@@ -96,3 +148,11 @@ var contactbox = new Vue({
         ]
     }
 })
+
+var about_me = new Vue({
+    el: "#about_me",
+    data: {
+
+    },
+    created: print_text_about_me,
+});
