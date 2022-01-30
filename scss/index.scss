@@ -81,7 +81,6 @@ a {
     bottom: auto;
     position: fixed;
     display: inline-flex;
-    justify-content: space-between;
     flex-direction: row;
     img.icon {
         max-height: $nav-item-height;
@@ -96,6 +95,8 @@ a {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     div.icon_holder {
         height: $nav-item-height;
         width: $nav-item-height;
@@ -109,11 +110,7 @@ a {
 
 .a_holder {
     white-space: nowrap;
-    margin: 5% 0;
-}
-
-.icon_title {
-    margin: 1px;
+    font-size: 25px;
 }
 
 .contact_box {
@@ -136,6 +133,9 @@ a {
         height: $icon-size;
         padding: margin("m");
     }
+    .contact_title {
+        cursor: pointer;
+    }
     &.activated {
         height: max-content;
         width: max-content;
@@ -157,7 +157,9 @@ a {
 }
 
 .icon_title {
+    margin: 3px;
     padding: 0px margin("m");
+    width: 0;
 }
 
 .icon_title li {
@@ -195,6 +197,68 @@ a {
 
 .main {
     padding-top: 70px;
+}
+
+.about_me {
     font-family: 'source-code';
-    .pause_writing {}
+    padding: 6vw 10vw 0 10vw;
+    min-height: 100vh;
+    p,
+    h1,
+    h2 {
+        font-weight: bold;
+        margin-block-end: 0px;
+        margin-block-start: 1em;
+    }
+    p {
+        font-size: 3vw;
+    }
+    h2 {
+        font-size: 4vw;
+    }
+    h1 {
+        font-size: 8vw;
+        margin-block-start: 0.3em;
+        cursor: pointer;
+    }
+    .pause_writing:after {
+        content: " ";
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url(../img/blinking_cursor.gif);
+        background-position: center;
+        padding-left: 0.7em;
+    }
+    .writing:after {
+        content: " ";
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url(../img/cursor.png);
+        background-position: center;
+        padding-left: 0.7em;
+    }
+}
+
+.about_me_background {
+    width: 0;
+    height: 0;
+    overflow: visible;
+    display: block;
+}
+
+.about_me_background>img {
+    display: block;
+    width: 45vw;
+    height: 45vw;
+    position: relative;
+    top: -3vw;
+    left: 35vw;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.about_me_background>img.show {
+    opacity: 20%;
+    transition: opacity 0.5s;
 }
