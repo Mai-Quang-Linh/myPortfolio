@@ -24,7 +24,7 @@ function asyncSleep(ms) {
 }
 
 const about_me_text_p = "Hi, I'm Linh";
-const about_me_text_h2 = "I can be your";
+const about_me_text_h2 = "I can be your ...";
 const about_me_text_h1 = ["SYSTEM ENGINEER", "FULL-STACK WEB DEVELOPER", "MOBILE APP DEVELOPER", "DESKTOP APP DEVELOPER", "SYSTEM ARCHITECT"];
 const about_me_background_img = ["system_engineer.png", "web.png", "mobile_app.png", "desktop_app.png", "system_architect.png"];
 
@@ -96,8 +96,27 @@ async function print_text_about_me() {
     $("#about_me>h2").addClass("pause_writing");
     await asyncSleep(1000);
     $("#about_me>h2").removeClass("pause_writing");
+    $("#about_me>h2").addClass("writing");
+    for (let length = about_me_text_h2.length - 1; length >= about_me_text_h2.length - 4; length--) {
+        await asyncSleep(50);
+        $("#about_me>h2").text(about_me_text_h2.substring(0, length));
+    }
+    $("#about_me>h2").removeClass("writing");
 
-    $("#about_me").append("<h1></h1>");
+    let $h1 = $(document.createElement("h1"));
+    $h1.prop("cycling", true);
+    $h1.prop("cycling_index", 0);
+    $h1.on("mouseover", function() {
+        $("#about_me>h1").prop("cycling", false);
+    });
+    $h1.on("mouseleave", function() {
+        $("#about_me>h1").prop("cycling", true);
+        if (!$("#about_me>h1").prop("cycling_inprogress")) {
+            print_job_text();
+        }
+    });
+
+    $("#about_me").append($h1);
     $("#about_me>h1").addClass("pause_writing");
     await asyncSleep(300);
 
@@ -112,18 +131,9 @@ async function print_text_about_me() {
     $("#about_me>h1").removeClass("writing");
     $("#about_me>h1").addClass("pause_writing");
     await asyncSleep(1000);
-    $("#about_me>h1").prop("cycling", true);
-    $("#about_me>h1").prop("cycling_index", 0);
-    $("#about_me>h1").on("mouseover", function() {
-        $("#about_me>h1").prop("cycling", false);
-    });
-    $("#about_me>h1").on("mouseleave", function() {
-        $("#about_me>h1").prop("cycling", true);
-        if (!$("#about_me>h1").prop("cycling_inprogress")) {
-            print_job_text();
-        }
-    });
-    print_job_text();
+    if ($("#about_me>h1").prop("cycling")) {
+        print_job_text();
+    }
 }
 
 function showIconTitle(id) {
