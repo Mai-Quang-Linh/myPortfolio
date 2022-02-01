@@ -377,7 +377,7 @@ a {
 
 .about_me_background > img.show {
   opacity: 20%;
-  -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
 }
 /*# sourceMappingURL=index.css.map */

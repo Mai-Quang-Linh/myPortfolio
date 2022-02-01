@@ -63,11 +63,10 @@ async function print_job_text() {
 
 async function print_text_about_me() {
     $("#about_me").html("");
-    $("#about_me").append('<span class="about_me_background"><img src="../img/me_big.png"></span>');
+    $("#about_me").append('<span class="about_me_background"><img src="./img/me.png"></span>');
     $("#about_me").append("<p></p>");
     $("#about_me>p").addClass("pause_writing");
-    await asyncSleep(300);
-    $("#about_me .about_me_background img").attr("src", "./img/me.png");
+    await asyncSleep(500);
     $("#about_me .about_me_background img").addClass("show");
     $("#about_me>p").removeClass("pause_writing");
     $("#about_me>p").addClass("writing");
@@ -78,7 +77,7 @@ async function print_text_about_me() {
 
     $("#about_me>p").removeClass("writing");
     $("#about_me>p").addClass("pause_writing");
-    await asyncSleep(2000);
+    await asyncSleep(3000);
     $("#about_me>p").removeClass("pause_writing");
 
     $("#about_me").append("<h2></h2>");
