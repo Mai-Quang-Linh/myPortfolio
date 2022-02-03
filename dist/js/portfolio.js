@@ -23,118 +23,118 @@ function asyncSleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const about_me_text_p = "Hi, I'm Linh";
-const about_me_text_h2 = "I can be your ...";
-const about_me_text_h1 = ["SYSTEM ENGINEER", "FULL-STACK WEB DEVELOPER", "MOBILE APP DEVELOPER", "DESKTOP APP DEVELOPER", "SYSTEM ARCHITECT"];
-const about_me_background_img = ["system_engineer.png", "web.png", "mobile_app.png", "desktop_app.png", "system_architect.png"];
+const opening_text_p = "Hi, I'm Linh";
+const opening_text_h2 = "I can be your ...";
+const opening_text_h1 = ["SYSTEM ENGINEER", "FULL-STACK WEB DEVELOPER", "MOBILE APP DEVELOPER", "DESKTOP APP DEVELOPER", "SYSTEM ARCHITECT"];
+const opening_background_img = ["system_engineer.png", "web.png", "mobile_app.png", "desktop_app.png", "system_architect.png"];
 
 async function print_job_text() {
-    $("#about_me>h1").prop("cycling_inprogress", true);
-    while ($("#about_me>h1").prop("cycling")) {
-        let index = $("#about_me>h1").prop("cycling_index");
-        $("#about_me .about_me_background img").removeClass("show");
-        $("#about_me>h1").removeClass("pause_writing");
-        $("#about_me>h1").addClass("writing");
-        let i = about_me_text_h1[index].length;
-        while (i > 0 && $("#about_me>h1").prop("cycling")) {
+    $("#opening>h1").prop("cycling_inprogress", true);
+    while ($("#opening>h1").prop("cycling")) {
+        let index = $("#opening>h1").prop("cycling_index");
+        $("#opening .opening_background img").removeClass("show");
+        $("#opening>h1").removeClass("pause_writing");
+        $("#opening>h1").addClass("writing");
+        let i = opening_text_h1[index].length;
+        while (i > 0 && $("#opening>h1").prop("cycling")) {
             await asyncSleep(50);
             i = i - 1;
-            $("#about_me>h1").text(about_me_text_h1[index].substring(0, i));
+            $("#opening>h1").text(opening_text_h1[index].substring(0, i));
         }
         if (i == 0) {
-            $("#about_me>h1").removeClass("writing");
-            $("#about_me>h1").addClass("pause_writing");
+            $("#opening>h1").removeClass("writing");
+            $("#opening>h1").addClass("pause_writing");
             await asyncSleep(300);
-            index = (index + 1) % about_me_text_h1.length;
-            $("#about_me>h1").prop("cycling_index", index);
-            $("#about_me>h1").removeClass("pause_writing");
-            $("#about_me>h1").addClass("writing");
+            index = (index + 1) % opening_text_h1.length;
+            $("#opening>h1").prop("cycling_index", index);
+            $("#opening>h1").removeClass("pause_writing");
+            $("#opening>h1").addClass("writing");
         }
-        $("#about_me .about_me_background img").attr("src", "./img/" + about_me_background_img[index]);
-        $("#about_me .about_me_background img").addClass("show");
-        while (i < about_me_text_h1[index].length) {
+        $("#opening .opening_background img").attr("src", "./img/" + opening_background_img[index]);
+        $("#opening .opening_background img").addClass("show");
+        while (i < opening_text_h1[index].length) {
             await asyncSleep(50);
-            $("#about_me>h1").append(about_me_text_h1[index].charAt(i) + "");
+            $("#opening>h1").append(opening_text_h1[index].charAt(i) + "");
             i = i + 1;
         }
-        $("#about_me>h1").removeClass("writing");
-        $("#about_me>h1").addClass("pause_writing");
+        $("#opening>h1").removeClass("writing");
+        $("#opening>h1").addClass("pause_writing");
         await asyncSleep(1000);
     }
-    $("#about_me>h1").prop("cycling_inprogress", false);
+    $("#opening>h1").prop("cycling_inprogress", false);
 }
 
-async function print_text_about_me() {
-    $("#about_me").html("");
-    $("#about_me").append('<span class="about_me_background"><img src="./img/me.png"></span>');
-    $("#about_me").append("<p></p>");
-    $("#about_me>p").addClass("pause_writing");
+async function print_text_opening() {
+    $("#opening").html("");
+    $("#opening").append('<span class="opening_background"><img src="./img/me.png"></span>');
+    $("#opening").append("<p></p>");
+    $("#opening>p").addClass("pause_writing");
     await asyncSleep(500);
-    $("#about_me .about_me_background img").addClass("show");
-    $("#about_me>p").removeClass("pause_writing");
-    $("#about_me>p").addClass("writing");
-    for (var char of about_me_text_p) {
+    $("#opening .opening_background img").addClass("show");
+    $("#opening>p").removeClass("pause_writing");
+    $("#opening>p").addClass("writing");
+    for (var char of opening_text_p) {
         await asyncSleep(50);
-        $("#about_me>p").append(char);
+        $("#opening>p").append(char);
     }
 
-    $("#about_me>p").removeClass("writing");
-    $("#about_me>p").addClass("pause_writing");
+    $("#opening>p").removeClass("writing");
+    $("#opening>p").addClass("pause_writing");
     await asyncSleep(2000);
-    $("#about_me>p").removeClass("pause_writing");
+    $("#opening>p").removeClass("pause_writing");
 
-    $("#about_me").append("<h2></h2>");
-    $("#about_me>h2").addClass("pause_writing");
+    $("#opening").append("<h2></h2>");
+    $("#opening>h2").addClass("pause_writing");
     await asyncSleep(300);
-    $("#about_me .about_me_background img").removeClass("show");
-    $("#about_me>h2").removeClass("pause_writing");
-    $("#about_me>h2").addClass("writing");
-    for (var char of about_me_text_h2) {
+    $("#opening .opening_background img").removeClass("show");
+    $("#opening>h2").removeClass("pause_writing");
+    $("#opening>h2").addClass("writing");
+    for (var char of opening_text_h2) {
         await asyncSleep(50);
-        $("#about_me>h2").append(char);
+        $("#opening>h2").append(char);
     }
 
-    $("#about_me>h2").removeClass("writing");
-    $("#about_me>h2").addClass("pause_writing");
+    $("#opening>h2").removeClass("writing");
+    $("#opening>h2").addClass("pause_writing");
     await asyncSleep(1000);
-    $("#about_me>h2").removeClass("pause_writing");
-    $("#about_me>h2").addClass("writing");
-    for (let length = about_me_text_h2.length - 1; length >= about_me_text_h2.length - 4; length--) {
+    $("#opening>h2").removeClass("pause_writing");
+    $("#opening>h2").addClass("writing");
+    for (let length = opening_text_h2.length - 1; length >= opening_text_h2.length - 4; length--) {
         await asyncSleep(50);
-        $("#about_me>h2").text(about_me_text_h2.substring(0, length));
+        $("#opening>h2").text(opening_text_h2.substring(0, length));
     }
-    $("#about_me>h2").removeClass("writing");
+    $("#opening>h2").removeClass("writing");
 
     let $h1 = $(document.createElement("h1"));
     $h1.prop("cycling", true);
     $h1.prop("cycling_index", 0);
     $h1.prop("cycling_inprogress", true);
     $h1.on("mouseover", function() {
-        $("#about_me>h1").prop("cycling", false);
+        $("#opening>h1").prop("cycling", false);
     });
     $h1.on("mouseleave", function() {
-        $("#about_me>h1").prop("cycling", true);
-        if (!$("#about_me>h1").prop("cycling_inprogress")) {
+        $("#opening>h1").prop("cycling", true);
+        if (!$("#opening>h1").prop("cycling_inprogress")) {
             print_job_text();
         }
     });
 
-    $("#about_me").append($h1);
-    $("#about_me>h1").addClass("pause_writing");
+    $("#opening").append($h1);
+    $("#opening>h1").addClass("pause_writing");
     await asyncSleep(300);
 
-    $("#about_me .about_me_background img").attr("src", "./img/" + about_me_background_img[0]);
-    $("#about_me .about_me_background img").addClass("show");
-    $("#about_me>h1").removeClass("pause_writing");
-    $("#about_me>h1").addClass("writing");
-    for (let char of about_me_text_h1[0]) {
+    $("#opening .opening_background img").attr("src", "./img/" + opening_background_img[0]);
+    $("#opening .opening_background img").addClass("show");
+    $("#opening>h1").removeClass("pause_writing");
+    $("#opening>h1").addClass("writing");
+    for (let char of opening_text_h1[0]) {
         await asyncSleep(50);
-        $("#about_me>h1").append(char);
+        $("#opening>h1").append(char);
     }
-    $("#about_me>h1").removeClass("writing");
-    $("#about_me>h1").addClass("pause_writing");
+    $("#opening>h1").removeClass("writing");
+    $("#opening>h1").addClass("pause_writing");
     await asyncSleep(1000);
-    if ($("#about_me>h1").prop("cycling")) {
+    if ($("#opening>h1").prop("cycling")) {
         print_job_text();
     }
 }
@@ -246,10 +246,10 @@ var contactbox = new Vue({
     }
 })
 
-var about_me = new Vue({
-    el: "#about_me",
+var opening = new Vue({
+    el: "#opening",
     data: {
 
     },
-    created: print_text_about_me,
+    created: print_text_opening,
 });

@@ -306,15 +306,15 @@ a {
   padding-top: 70px;
 }
 
-.about_me {
+.opening {
   font-family: 'source-code';
   padding: 6vw 10vw 0 10vw;
   min-height: 45vw;
 }
 
-.about_me p,
-.about_me h1,
-.about_me h2 {
+.opening p,
+.opening h1,
+.opening h2 {
   font-weight: bold;
   -webkit-margin-after: 0px;
           margin-block-end: 0px;
@@ -322,22 +322,22 @@ a {
           margin-block-start: 1em;
 }
 
-.about_me p {
+.opening p {
   font-size: 3vw;
 }
 
-.about_me h2 {
+.opening h2 {
   font-size: 4vw;
 }
 
-.about_me h1 {
+.opening h1 {
   font-size: 8vw;
   -webkit-margin-before: 0.3em;
           margin-block-start: 0.3em;
   cursor: pointer;
 }
 
-.about_me .pause_writing:after {
+.opening .pause_writing:after {
   content: " ";
   background-size: contain;
   background-repeat: no-repeat;
@@ -346,7 +346,7 @@ a {
   padding-left: 0.7em;
 }
 
-.about_me .writing:after {
+.opening .writing:after {
   content: " ";
   background-size: contain;
   background-repeat: no-repeat;
@@ -355,14 +355,14 @@ a {
   padding-left: 0.7em;
 }
 
-.about_me_background {
+.opening_background {
   width: 0;
   height: 0;
   overflow: visible;
   display: block;
 }
 
-.about_me_background > img {
+.opening_background > img {
   display: block;
   width: 45vw;
   height: 45vw;
@@ -375,7 +375,7 @@ a {
   transition: opacity 0.5s;
 }
 
-.about_me_background > img.show {
+.opening_background > img.show {
   opacity: 20%;
   -webkit-transition: opacity 1s;
   transition: opacity 1s;

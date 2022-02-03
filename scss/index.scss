@@ -199,7 +199,7 @@ a {
     padding-top: 70px;
 }
 
-.about_me {
+.opening {
     font-family: 'source-code';
     padding: 6vw 10vw 0 10vw;
     min-height: 45vw;
@@ -239,14 +239,14 @@ a {
     }
 }
 
-.about_me_background {
+.opening_background {
     width: 0;
     height: 0;
     overflow: visible;
     display: block;
 }
 
-.about_me_background>img {
+.opening_background>img {
     display: block;
     width: 45vw;
     height: 45vw;
@@ -258,7 +258,7 @@ a {
     transition: opacity 0.5s;
 }
 
-.about_me_background>img.show {
+.opening_background>img.show {
     opacity: 20%;
     transition: opacity 1s;
 }
