@@ -29,36 +29,39 @@ const about_me_text_h1 = ["SYSTEM ENGINEER", "FULL-STACK WEB DEVELOPER", "MOBILE
 const about_me_background_img = ["system_engineer.png", "web.png", "mobile_app.png", "desktop_app.png", "system_architect.png"];
 
 async function print_job_text() {
+    $("#about_me>h1").prop("cycling_inprogress", true);
     while ($("#about_me>h1").prop("cycling")) {
-        $("#about_me>h1").prop("cycling_inprogress", true);
         let index = $("#about_me>h1").prop("cycling_index");
         $("#about_me .about_me_background img").removeClass("show");
         $("#about_me>h1").removeClass("pause_writing");
         $("#about_me>h1").addClass("writing");
-        for (let i in about_me_text_h1[index]) {
+        let i = about_me_text_h1[index].length;
+        while (i > 0 && $("#about_me>h1").prop("cycling")) {
             await asyncSleep(50);
-            $("#about_me>h1").text(about_me_text_h1[index].substring(0, about_me_text_h1[index].length - i - 1));
+            i = i - 1;
+            $("#about_me>h1").text(about_me_text_h1[index].substring(0, i));
         }
-        $("#about_me>h1").removeClass("writing");
-        $("#about_me>h1").addClass("pause_writing");
-        await asyncSleep(300);
-        if ($("#about_me>h1").prop("cycling")) {
+        if (i == 0) {
+            $("#about_me>h1").removeClass("writing");
+            $("#about_me>h1").addClass("pause_writing");
+            await asyncSleep(300);
             index = (index + 1) % about_me_text_h1.length;
             $("#about_me>h1").prop("cycling_index", index);
+            $("#about_me>h1").removeClass("pause_writing");
+            $("#about_me>h1").addClass("writing");
         }
         $("#about_me .about_me_background img").attr("src", "./img/" + about_me_background_img[index]);
         $("#about_me .about_me_background img").addClass("show");
-        $("#about_me>h1").removeClass("pause_writing");
-        $("#about_me>h1").addClass("writing");
-        for (let char of about_me_text_h1[index]) {
+        while (i < about_me_text_h1[index].length) {
             await asyncSleep(50);
-            $("#about_me>h1").append(char);
+            $("#about_me>h1").append(about_me_text_h1[index].charAt(i) + "");
+            i = i + 1;
         }
         $("#about_me>h1").removeClass("writing");
         $("#about_me>h1").addClass("pause_writing");
         await asyncSleep(1000);
-        $("#about_me>h1").prop("cycling_inprogress", false);
     }
+    $("#about_me>h1").prop("cycling_inprogress", false);
 }
 
 async function print_text_about_me() {
@@ -77,7 +80,7 @@ async function print_text_about_me() {
 
     $("#about_me>p").removeClass("writing");
     $("#about_me>p").addClass("pause_writing");
-    await asyncSleep(3000);
+    await asyncSleep(2000);
     $("#about_me>p").removeClass("pause_writing");
 
     $("#about_me").append("<h2></h2>");
@@ -105,6 +108,7 @@ async function print_text_about_me() {
     let $h1 = $(document.createElement("h1"));
     $h1.prop("cycling", true);
     $h1.prop("cycling_index", 0);
+    $h1.prop("cycling_inprogress", true);
     $h1.on("mouseover", function() {
         $("#about_me>h1").prop("cycling", false);
     });
@@ -166,6 +170,35 @@ Vue.component('contact-icon-title', {
                 </li>`
 });
 
+
+Vue.component('sub-skill-cell', {
+    props: ['data'],
+    template: `
+        <tr>
+            <td><h2>{{data.skill_name}}</h2></td>
+            <td><div class = "lvl-bar"></div></td>
+        </tr>
+    `
+})
+Vue.component('skill-cell', {
+    props: ['data'],
+    template: `
+    {{#if (data.id%2 == 0)}}
+        <tr> 
+    {{/if}}
+            <td>
+                <table>
+                    <tr>
+                        <th><h2>{{data.skill_name}}</h2></th>
+                        <th><div class = "lvl-bar"></div></th>
+                    </tr>
+                    <sub-skill-cell v-for="item in data.subskill" v-bind:data="item" v-bind:key="item.id"></sub-skill-cell>
+                <table>
+            </td>
+    {{#if (data.id%2 == 1)}}
+        </tr> 
+    {{/if}}`
+});
 
 var navlinks = new Vue({
     el: "#nav_links",

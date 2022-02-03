@@ -309,7 +309,7 @@ a {
 .about_me {
   font-family: 'source-code';
   padding: 6vw 10vw 0 10vw;
-  min-height: 100vh;
+  min-height: 45vw;
 }
 
 .about_me p,
