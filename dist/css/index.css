@@ -184,7 +184,7 @@ a {
 
 .a_holder {
   white-space: nowrap;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .contact_box {
@@ -261,6 +261,7 @@ a {
   margin: 3px;
   padding: 0px 5px;
   width: 0;
+  cursor: default;
 }
 
 .icon_title li {
@@ -296,6 +297,7 @@ a {
   max-width: 28px;
   display: block;
   margin: auto;
+  cursor: pointer;
 }
 
 .contact_title {
@@ -379,5 +381,30 @@ a {
   opacity: 20%;
   -webkit-transition: opacity 1s;
   transition: opacity 1s;
+}
+
+.about_me {
+  font-family: 'source-code';
+  padding-top: 10vw;
+}
+
+.about_me > h1 {
+  font-size: 6vw;
+  text-align: center;
+  margin-bottom: 5vw;
+}
+
+.about_me > p {
+  font-size: 2vw;
+  line-height: 3vw;
+  margin: 2vw 10vw;
+}
+
+.about_me > img {
+  width: 9vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 7vw;
+  display: block;
 }
 /*# sourceMappingURL=index.css.map */

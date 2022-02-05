@@ -171,15 +171,6 @@ Vue.component('contact-icon-title', {
 });
 
 
-Vue.component('sub-skill-cell', {
-    props: ['data'],
-    template: `
-        <tr>
-            <td><h2>{{data.skill_name}}</h2></td>
-            <td><div class = "lvl-bar"></div></td>
-        </tr>
-    `
-})
 Vue.component('skill-cell', {
     props: ['data'],
     template: `
@@ -192,7 +183,6 @@ Vue.component('skill-cell', {
                         <th><h2>{{data.skill_name}}</h2></th>
                         <th><div class = "lvl-bar"></div></th>
                     </tr>
-                    <sub-skill-cell v-for="item in data.subskill" v-bind:data="item" v-bind:key="item.id"></sub-skill-cell>
                 <table>
             </td>
     {{#if (data.id%2 == 1)}}
@@ -204,7 +194,7 @@ var navlinks = new Vue({
     el: "#nav_links",
     data: {
         items: [
-            { id: 0, text: "me", link: "" },
+            { id: 0, text: "about me", link: "" },
             { id: 1, text: "my works", link: "./project.html" },
             { id: 2, text: "why me", link: "./cv.html" }
         ]
