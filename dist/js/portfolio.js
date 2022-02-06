@@ -170,33 +170,13 @@ Vue.component('contact-icon-title', {
                 </li>`
 });
 
-
-Vue.component('skill-cell', {
-    props: ['data'],
-    template: `
-    {{#if (data.id%2 == 0)}}
-        <tr> 
-    {{/if}}
-            <td>
-                <table>
-                    <tr>
-                        <th><h2>{{data.skill_name}}</h2></th>
-                        <th><div class = "lvl-bar"></div></th>
-                    </tr>
-                <table>
-            </td>
-    {{#if (data.id%2 == 1)}}
-        </tr> 
-    {{/if}}`
-});
-
 var navlinks = new Vue({
     el: "#nav_links",
     data: {
         items: [
-            { id: 0, text: "about me", link: "" },
-            { id: 1, text: "my works", link: "./project.html" },
-            { id: 2, text: "why me", link: "./cv.html" }
+            { id: 0, text: "about me", link: "#about_me" },
+            { id: 1, text: "why me", link: "#why_me" },
+            { id: 2, text: "my works", link: "./project.html" }
         ]
     }
 });
@@ -242,4 +222,8 @@ var opening = new Vue({
 
     },
     created: print_text_opening,
+});
+
+var skill = new Vue({
+
 });
