@@ -64,24 +64,31 @@
             </div>
             <div id="why_me" class="why_me">
                 <h1>Things I can do</h1>
-                <table id="skills" class="skills">
-                    <tr>
-                        <td v-for="item in items">
-                            <div class="lvl-bar" v-bind:class="[item.lvl]"></div>
-                        </td>
-                        <td>
-                            <div v-for="lvl in lvls"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th v-for="item in items">
-                            <h2 class="skill-title">{{item.skill-name}}</h2>
-                        </th>
-                        <td>
-                            <div></div>
-                        </td>
-                    </tr>
-                </table>
+                <div id="skills" class="skills">
+                    <div class="lvl-title-bar">
+                        <div v-for="lvl in lvls" class="lvl-title">
+                            <h4>
+                                <span v-html="lvl.lvlName">
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    <table class="skill-table">
+                        <tr>
+                            <td v-for="item in items">
+                                <div class="lvl-bar" v-bind:class="[item.lvl]"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th v-for="item in items">
+                                <h3 v-html="item.skillName" class="skill-title"></h3>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="projects" class="projects">
+
             </div>
         </div>
     </div>

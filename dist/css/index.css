@@ -3,6 +3,12 @@
   src: url(../font/Source_Code_Pro/static/SourceCodePro-Medium.ttf);
 }
 
+@font-face {
+  font-family: 'source-code';
+  src: url(../font/Source_Code_Pro/static/SourceCodePro-Bold.ttf);
+  font-weight: bold;
+}
+
 @-webkit-keyframes fadein_ul {
   0% {
     width: 130px;
@@ -118,6 +124,10 @@ li {
 a {
   text-decoration: none;
   color: black;
+}
+
+body {
+  margin: 0;
 }
 
 .body {
@@ -344,7 +354,8 @@ a {
   background-repeat: no-repeat;
   background-image: url(../img/blinking_cursor.gif);
   background-position: center;
-  padding-left: 0.7em;
+  margin-left: 0.1em;
+  padding-left: 0.62em;
 }
 
 .opening .writing:after {
@@ -353,7 +364,8 @@ a {
   background-repeat: no-repeat;
   background-image: url(../img/cursor.png);
   background-position: center;
-  padding-left: 0.7em;
+  margin-left: 0.1em;
+  padding-left: 0.62em;
 }
 
 .opening_background {
@@ -404,6 +416,8 @@ a {
 
 .why_me {
   padding-top: 70px;
+  padding-left: 8vw;
+  padding-right: 8vw;
 }
 
 .why_me h1 {
@@ -413,6 +427,145 @@ a {
 
 .skills {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.skills .skill-table {
+  margin-right: 14vw;
+  width: 100%;
+  border-collapse: collapse;
   height: 40vw;
+  table-layout: fixed;
+  z-index: -1;
+}
+
+.skills tr:first-child {
+  height: 35vw;
+  padding: 3px;
+  vertical-align: bottom;
+  border-right: solid black 0.2vw;
+}
+
+.skills tr:last-child {
+  border-top: solid black 0.2vw;
+}
+
+.skills h3 {
+  font-size: 1.6vw;
+  font-weight: normal;
+}
+
+.skills h4 {
+  font-size: 1.2vw;
+  font-weight: normal;
+}
+
+.skills h4 strong {
+  font-weight: bold;
+  font-size: 1.4vw;
+}
+
+.lvl-bar {
+  background-color: gray;
+  width: 2vw;
+  margin: auto;
+}
+
+.lvl-bar.lvl00 {
+  height: 00%;
+}
+
+.lvl-bar.lvl10 {
+  height: 10%;
+}
+
+.lvl-bar.lvl20 {
+  height: 20%;
+}
+
+.lvl-bar.lvl30 {
+  height: 30%;
+}
+
+.lvl-bar.lvl40 {
+  height: 40%;
+}
+
+.lvl-bar.lvl50 {
+  height: 50%;
+}
+
+.lvl-bar.lvl60 {
+  height: 60%;
+}
+
+.lvl-bar.lvl70 {
+  height: 70%;
+}
+
+.lvl-bar.lvl80 {
+  height: 80%;
+}
+
+.lvl-bar.lvl90 {
+  height: 90%;
+}
+
+.lvl-bar.lvl100 {
+  height: 100%;
+}
+
+.lvl-title-bar {
+  height: 42vw;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: stretch;
+  width: 0;
+  overflow: visible;
+  margin: 0;
+}
+
+.lvl-title {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  text-align: start;
+  width: 15vw;
+  padding-left: 70vw;
+  border-top: black dashed 0.1vw;
+}
+
+.lvl-title h4 {
+  display: inline-block;
+  margin-left: 0.5em;
+  margin-top: -3.5vw;
+  margin-bottom: 0;
+  height: 7vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: middle;
+}
+
+.lvl-title span {
+  background-color: white;
+  padding-left: 0.5em;
 }
 /*# sourceMappingURL=index.css.map */

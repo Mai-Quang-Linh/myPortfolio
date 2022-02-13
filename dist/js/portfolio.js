@@ -225,5 +225,63 @@ var opening = new Vue({
 });
 
 var skill = new Vue({
-
+    el: "#skills",
+    data: {
+        items: [{
+                skillName: 'HTML<br/>CSS',
+                lvl: "lvl60",
+            },
+            {
+                skillName: "JS<br/>JQuery",
+                lvl: "lvl70",
+            },
+            {
+                skillName: "React",
+                lvl: "lvl50",
+            },
+            {
+                skillName: "Flutter",
+                lvl: "lvl40",
+            },
+            {
+                skillName: "Swift",
+                lvl: "lvl40",
+            },
+            {
+                skillName: "SQL",
+                lvl: "lvl70",
+            },
+            {
+                skillName: "Java<br/>Spring",
+                lvl: "lvl60",
+            },
+            {
+                skillName: "Node<br/>Express",
+                lvl: "lvl60",
+            },
+            {
+                skillName: "AWS",
+                lvl: "lvl60",
+            }
+        ],
+        lvls: [{
+                lvlName: "<strong>Super&nbsp;Advance:</strong><br/>I'm an all knowing God."
+            },
+            {
+                lvlName: "<strong>Advance:</strong><br/>I'm somewhat of an expert."
+            },
+            {
+                lvlName: "<strong>Upper&nbsp;Intermediate:</strong><br/>I have experience working with it."
+            },
+            {
+                lvlName: "<strong>Intermediate:</strong><br/>I know all of the basic."
+            },
+            {
+                lvlName: "<strong>Beginner:</strong><br/>I just started learning it."
+            },
+            {
+                lvlName: "<strong>Uhh...:</strong><br/>This thing existed ??!"
+            }
+        ]
+    }
 });
