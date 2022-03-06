@@ -48,9 +48,9 @@
             </div>
         </div>
         <div class="main">
-            <div id="opening" class="opening">
+            <div id="opening" class="opening scrollHide">
             </div>
-            <div id="about_me" class="about_me">
+            <div id="about_me" class="about_me scrollHide">
                 <h1>Who am I</h1>
                 <p>
                     &emsp;I'm a System Engineer living in Japan. I specialize in Web Application's Backend, but I also occasionally dabble in Mobile and Desktop Applications Development.
@@ -62,7 +62,7 @@
                     &emsp;My goal is to become an all-rounded engineer who can adapt to tackle whichever obstacles stand in your way.
                 </p>
             </div>
-            <div id="why_me" class="why_me">
+            <div id="why_me" class="why_me scrollHide">
                 <h1>Things I can do</h1>
                 <div id="skills" class="skills">
                     <div class="lvl-title-bar">
@@ -76,7 +76,7 @@
                     <table class="skill-table">
                         <tr>
                             <td v-for="item in items">
-                                <div class="lvl-bar" v-bind:class="[item.lvl]"></div>
+                                <div class="lvl-bar scrollHide" v-bind:class="[item.lvl]"></div>
                             </td>
                         </tr>
                         <tr>
@@ -88,6 +88,7 @@
                 </div>
             </div>
             <div id="projects" class="projects">
+                <h1>Stuffs That I Made</h1>
 
             </div>
         </div>

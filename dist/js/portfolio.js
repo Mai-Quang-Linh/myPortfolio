@@ -1,3 +1,6 @@
+let cyclingOpeningH1 = null;
+let showingOpening = false;
+
 function showIcon(target) {
     target.parentElement.parentElement.classList.add("activated");
     target.parentElement.parentElement.classList.remove("deactivated");
@@ -29,78 +32,125 @@ const opening_text_h1 = ["SYSTEM ENGINEER", "FULL-STACK WEB DEVELOPER", "MOBILE 
 const opening_background_img = ["system_engineer.png", "web.png", "mobile_app.png", "desktop_app.png", "system_architect.png"];
 
 async function print_job_text() {
-    $("#opening>h1").prop("cycling_inprogress", true);
-    while ($("#opening>h1").prop("cycling")) {
-        let index = $("#opening>h1").prop("cycling_index");
-        $("#opening .opening_background img").removeClass("show");
-        $("#opening>h1").removeClass("pause_writing");
-        $("#opening>h1").addClass("writing");
-        let i = opening_text_h1[index].length;
-        while (i > 0 && $("#opening>h1").prop("cycling")) {
-            await asyncSleep(50);
-            i = i - 1;
-            $("#opening>h1").text(opening_text_h1[index].substring(0, i));
-        }
-        if (i == 0) {
-            $("#opening>h1").removeClass("writing");
-            $("#opening>h1").addClass("pause_writing");
-            await asyncSleep(300);
-            index = (index + 1) % opening_text_h1.length;
-            $("#opening>h1").prop("cycling_index", index);
+    try {
+        $("#opening>h1").prop("cycling_inprogress", true);
+        while ($("#opening>h1").prop("cycling")) {
+            let index = $("#opening>h1").prop("cycling_index");
+            $("#opening .opening_background img").removeClass("show");
             $("#opening>h1").removeClass("pause_writing");
             $("#opening>h1").addClass("writing");
+            let i = opening_text_h1[index].length;
+            while (i > 0 && $("#opening>h1").prop("cycling")) {
+                await asyncSleep(50);
+                if ($("#opening").hasClass("abortCycle")) {
+                    $("#opening").removeClass("abortCycle");
+                    return;
+                }
+                i = i - 1;
+                $("#opening>h1").text(opening_text_h1[index].substring(0, i));
+            }
+            if (i == 0) {
+                $("#opening>h1").removeClass("writing");
+                $("#opening>h1").addClass("pause_writing");
+                await asyncSleep(300);
+                if ($("#opening").hasClass("abortCycle")) {
+                    $("#opening").removeClass("abortCycle");
+                    return;
+                }
+                index = (index + 1) % opening_text_h1.length;
+                $("#opening>h1").prop("cycling_index", index);
+                $("#opening>h1").removeClass("pause_writing");
+                $("#opening>h1").addClass("writing");
+            }
+            $("#opening .opening_background img").attr("src", "./img/" + opening_background_img[index]);
+            $("#opening .opening_background img").addClass("show");
+            while (i < opening_text_h1[index].length) {
+                await asyncSleep(50);
+                if ($("#opening").hasClass("abortCycle")) {
+                    $("#opening").removeClass("abortCycle");
+                    return;
+                }
+                $("#opening>h1").append(opening_text_h1[index].charAt(i) + "");
+                i = i + 1;
+            }
+            $("#opening>h1").removeClass("writing");
+            $("#opening>h1").addClass("pause_writing");
+            await asyncSleep(1000);
+            if ($("#opening").hasClass("abortCycle")) {
+                $("#opening").removeClass("abortCycle");
+                return;
+            }
         }
-        $("#opening .opening_background img").attr("src", "./img/" + opening_background_img[index]);
-        $("#opening .opening_background img").addClass("show");
-        while (i < opening_text_h1[index].length) {
-            await asyncSleep(50);
-            $("#opening>h1").append(opening_text_h1[index].charAt(i) + "");
-            i = i + 1;
-        }
-        $("#opening>h1").removeClass("writing");
-        $("#opening>h1").addClass("pause_writing");
-        await asyncSleep(1000);
+        $("#opening>h1").prop("cycling_inprogress", false);
+    } catch (e) {
+        console.log(e);
+        return;
     }
-    $("#opening>h1").prop("cycling_inprogress", false);
 }
 
 async function print_text_opening() {
-    $("#opening").html("");
+    showingOpening = true;
+    $("#opening").replaceWith('<div id="opening" class="opening scrollShow"></div>');
     $("#opening").append('<span class="opening_background"><img src="./img/me.png"></span>');
     $("#opening").append("<p></p>");
     $("#opening>p").addClass("pause_writing");
     await asyncSleep(500);
+    if ($("#opening").hasClass("abort")) {
+        $("#opening").removeClass("abort");
+        return;
+    }
     $("#opening .opening_background img").addClass("show");
     $("#opening>p").removeClass("pause_writing");
     $("#opening>p").addClass("writing");
     for (var char of opening_text_p) {
         await asyncSleep(50);
+        if ($("#opening").hasClass("abort")) {
+            $("#opening").removeClass("abort");
+            return;
+        }
         $("#opening>p").append(char);
     }
 
     $("#opening>p").removeClass("writing");
     $("#opening>p").addClass("pause_writing");
     await asyncSleep(2000);
+    if ($("#opening").hasClass("abort")) {
+        $("#opening").removeClass("abort");
+        return;
+    }
     $("#opening>p").removeClass("pause_writing");
 
     $("#opening").append("<h2></h2>");
     $("#opening>h2").addClass("pause_writing");
     await asyncSleep(300);
+    if ($("#opening").hasClass("abort")) {
+        $("#opening").removeClass("abort");
+        return;
+    }
     $("#opening .opening_background img").removeClass("show");
     $("#opening>h2").removeClass("pause_writing");
     $("#opening>h2").addClass("writing");
     for (var char of opening_text_h2) {
         await asyncSleep(50);
+        if ($("#opening").hasClass("abort")) {
+            $("#opening").removeClass("abort");
+            return;
+        }
         $("#opening>h2").append(char);
     }
 
     $("#opening>h2").removeClass("writing");
     $("#opening>h2").addClass("pause_writing");
     await asyncSleep(1000);
+
     $("#opening>h2").removeClass("pause_writing");
     $("#opening>h2").addClass("writing");
     for (let length = opening_text_h2.length - 1; length >= opening_text_h2.length - 4; length--) {
         await asyncSleep(50);
+        if ($("#opening").hasClass("abort")) {
+            $("#opening").removeClass("abort");
+            return;
+        }
         $("#opening>h2").text(opening_text_h2.substring(0, length));
     }
     $("#opening>h2").removeClass("writing");
@@ -115,13 +165,17 @@ async function print_text_opening() {
     $h1.on("mouseleave", function() {
         $("#opening>h1").prop("cycling", true);
         if (!$("#opening>h1").prop("cycling_inprogress")) {
-            print_job_text();
+            cyclingOpeningH1 = print_job_text();
         }
     });
 
     $("#opening").append($h1);
     $("#opening>h1").addClass("pause_writing");
     await asyncSleep(300);
+    if ($("#opening").hasClass("abort")) {
+        $("#opening").removeClass("abort");
+        return;
+    }
 
     $("#opening .opening_background img").attr("src", "./img/" + opening_background_img[0]);
     $("#opening .opening_background img").addClass("show");
@@ -129,14 +183,23 @@ async function print_text_opening() {
     $("#opening>h1").addClass("writing");
     for (let char of opening_text_h1[0]) {
         await asyncSleep(50);
+        if ($("#opening").hasClass("abort")) {
+            $("#opening").removeClass("abort");
+            return;
+        }
         $("#opening>h1").append(char);
     }
     $("#opening>h1").removeClass("writing");
     $("#opening>h1").addClass("pause_writing");
     await asyncSleep(1000);
-    if ($("#opening>h1").prop("cycling")) {
-        print_job_text();
+    if ($("#opening").hasClass("abort")) {
+        $("#opening").removeClass("abort");
+        return;
     }
+    if ($("#opening>h1").prop("cycling")) {
+        cyclingOpeningH1 = print_job_text();
+    }
+    showingOpening = false;
 }
 
 function showIconTitle(id) {
@@ -147,6 +210,83 @@ function showIconTitle(id) {
 function hideIconTitle(id) {
     $("#" + id).addClass("hide");
     $("#" + id).removeClass("show");
+}
+
+async function animateDecode() {
+
+}
+
+async function showAboutMe() {
+    //encode every thing
+    var crypticChar = '¡¢£¤¥µ¶·"#$%&*@§ɃɄɅɆɇɈɉɊɋʒʓʔʕʖʗʜʝʠʡʢÞßᗧᗨᗩᗪᗫᗬᗭḂḃḄḅḆḇḈḉḊḋḌḍḎḏḐḑḒḓḔḕḖḗḘḙḚḛḜḝḞḟḠḡḢḣḤḥḦḧḨḩḪḫḬḭḮḯḰḱḲḳḴ';
+    var h1Text = $("#about_me>h1").text();
+    let h1Newtext = "";
+    for (var char of h1Text) {
+        if (char != ' ') {
+            h1Newtext += (crypticChar.charAt(Math.floor(Math.random() * crypticChar.length)));
+        } else {
+            h1Newtext += char;
+        }
+    }
+    $("#about_me>h1").text(h1Newtext);
+
+    var pText = [];
+    for (var p of $("#about_me>p")) {
+        pText.push($(p).text())
+        let pNewText = "";
+        for (var char of $(p).text()) {
+            if (char != ' ') {
+                pNewText += (crypticChar.charAt(Math.floor(Math.random() * crypticChar.length)));
+            } else {
+                pNewText += char;
+            }
+        }
+        $(p).text(pNewText);
+    }
+    $("#about_me").removeClass("scrollHide");
+    $("#about_me").addClass("scrollShow");
+    //decode h1
+
+}
+
+function showHandler(item) {
+    if (item.id == "opening") {
+        $(item).removeClass("scrollHide");
+        $(item).addClass("scrollShow");
+        (async() => {
+            while ($("#opening").hasClass("abortCycle") || $("#opening").hasClass("abort")) {
+                await asyncSleep(50);
+            }
+            print_text_opening();
+        })();
+    } else if (item.id == "about_me") {
+        showAboutMe();
+    } else {
+        $(item).removeClass("scrollHide");
+        $(item).addClass("scrollShow");
+    }
+}
+
+function hideHandler(item) {
+    if (item.id == "opening") {
+        $("#opening").replaceWith('<div id="opening" class="opening ' + (cyclingOpeningH1 == null ? "" : "abortCycle ") + (showingOpening ? 'abort ' : '') + 'scrollHide"></div>');
+    } else {
+        $(item).removeClass("scrollShow");
+        $(item).addClass("scrollHide");
+    }
+}
+
+function onScrollHandler() {
+    for (let item of $(".scrollHide")) {
+        if (item.getBoundingClientRect().top < window.innerHeight * 0.9 && item.getBoundingClientRect().bottom > window.innerHeight * 0.1) {
+            showHandler(item);
+        }
+    }
+    for (let item of $(".scrollShow")) {
+        if (item.getBoundingClientRect().top >= window.innerHeight * 0.9 || item.getBoundingClientRect().bottom <= window.innerHeight * 0.1) {
+            hideHandler(item);
+        }
+    }
 }
 
 Vue.component('navlink-item', {
@@ -176,7 +316,7 @@ var navlinks = new Vue({
         items: [
             { id: 0, text: "about me", link: "#about_me" },
             { id: 1, text: "why me", link: "#why_me" },
-            { id: 2, text: "my works", link: "./project.html" }
+            { id: 2, text: "my works", link: "#projects" }
         ]
     }
 });
@@ -217,11 +357,7 @@ var contactbox = new Vue({
 })
 
 var opening = new Vue({
-    el: "#opening",
-    data: {
-
-    },
-    created: print_text_opening,
+    el: "#opening"
 });
 
 var skill = new Vue({
@@ -285,3 +421,6 @@ var skill = new Vue({
         ]
     }
 });
+
+window.addEventListener("scroll", onScrollHandler);
+onScrollHandler();

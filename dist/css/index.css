@@ -137,6 +137,18 @@ body {
   font-family: 'source-code';
 }
 
+.scrollHide {
+  opacity: 0;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+
+.scrollShow {
+  opacity: 1;
+  -webkit-transition: all 1s ease-in;
+  transition: all 1s ease-in;
+}
+
 .navbar {
   background: white;
   font-size: 17px;
@@ -154,6 +166,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  z-index: 99;
 }
 
 .navbar img.icon {
@@ -316,6 +329,7 @@ body {
 
 .main {
   padding-top: 70px;
+  background-color: white;
 }
 
 .opening {
@@ -368,6 +382,10 @@ body {
   padding-left: 0.62em;
 }
 
+.opening.scrollHide {
+  opacity: 1;
+}
+
 .opening_background {
   width: 0;
   height: 0;
@@ -382,7 +400,6 @@ body {
   position: relative;
   top: -3vw;
   left: 35vw;
-  z-index: -1;
   opacity: 0;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
@@ -400,6 +417,7 @@ body {
   padding-top: 70px;
   padding-bottom: 10vw;
   background-color: black;
+  background-image: url(../img/matrix_background3.gif);
 }
 
 .about_me > h1 {
@@ -442,11 +460,10 @@ body {
   border-collapse: collapse;
   height: 40vw;
   table-layout: fixed;
-  z-index: -1;
 }
 
 .skills tr:first-child {
-  height: 35vw;
+  height: 100%;
   padding: 3px;
   vertical-align: bottom;
   border-right: solid black 0.2vw;
@@ -454,6 +471,11 @@ body {
 
 .skills tr:last-child {
   border-top: solid black 0.2vw;
+  height: 5vw;
+}
+
+.skills tr:last-child h3 {
+  margin: 0;
 }
 
 .skills h3 {
@@ -534,6 +556,7 @@ body {
   width: 0;
   overflow: visible;
   margin: 0;
+  z-index: 1;
 }
 
 .lvl-title {
@@ -567,5 +590,21 @@ body {
 .lvl-title span {
   background-color: white;
   padding-left: 0.5em;
+}
+
+.projects {
+  color: white;
+  margin-top: 5vw;
+  padding-top: 70px;
+  padding-bottom: 10vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  background-color: gray;
+  height: 50vw;
+}
+
+.projects h1 {
+  padding-top: 3vw;
+  font-size: 5vw;
 }
 /*# sourceMappingURL=index.css.map */
