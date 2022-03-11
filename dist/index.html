@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hello I'm Linh</title>
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="icon" type="image/x-icon" href="./img/icon.png">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/portfolio.js" defer></script>
 </head>
@@ -19,6 +21,15 @@
                     <img class="icon" src="./img/icon.png">
                 </div>
                 <navlink-item v-for="item in items" v-bind:data="item" v-bind:key="item.id"></navlink-item>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
             <div id="contact_box" class="contact_box">
                 <div class="contact_icon_col">
@@ -37,7 +48,49 @@
             </div>
         </div>
         <div class="main">
+            <div id="opening" class="opening scrollHide">
+            </div>
+            <div id="about_me" class="about_me scrollHide">
+                <h1>Who am I</h1>
+                <p>
+                    &emsp;I'm a System Engineer living in Japan. I specialize in Web Application's Backend, but I also occasionally dabble in Mobile and Desktop Applications Development.
+                </p>
+                <p>
+                    &emsp;I love intriguing problems as much as designing the most fitting systems to solve them.
+                </p>
+                <p>
+                    &emsp;My goal is to become an all-rounded engineer who can adapt to tackle whichever obstacles stand in your way.
+                </p>
+            </div>
+            <div id="why_me" class="why_me scrollHide">
+                <h1>Things I can do</h1>
+                <div id="skills" class="skills">
+                    <div class="lvl-title-bar">
+                        <div v-for="lvl in lvls" class="lvl-title">
+                            <h4>
+                                <span v-html="lvl.lvlName">
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    <table class="skill-table">
+                        <tr>
+                            <td v-for="item in items">
+                                <div class="lvl-bar scrollHide" v-bind:class="[item.lvl]"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th v-for="item in items">
+                                <h3 v-html="item.skillName" class="skill-title"></h3>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="projects" class="projects">
+                <h1>Stuffs That I Made</h1>
 
+            </div>
         </div>
     </div>
 </body>

@@ -24,6 +24,12 @@ $margin: ( "small": 2px, "medium": 5px, "large": 8px);
     src: url(../font/Source_Code_Pro/static/SourceCodePro-Medium.ttf);
 }
 
+@font-face {
+    font-family: 'source-code';
+    src: url(../font/Source_Code_Pro/static/SourceCodePro-Bold.ttf);
+    font-weight: bold;
+}
+
 @mixin keyframes-fadein ($name, $before_width, $before_height, $transit_width, $transit_height, $after_width, $after_height) {
     @keyframes #{$name} {
         0% {
@@ -63,24 +69,40 @@ a {
     color: black;
 }
 
+body {
+    margin: 0;
+}
+
 .body {
     display: block;
     width: auto;
     height: $max-height;
+    font-family: 'source-code';
+}
+
+.scrollHide {
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.scrollShow {
+    opacity: 1;
+    transition: all 1s ease-in;
 }
 
 .navbar {
-    font-family: 'source-code';
+    background: white;
     font-size: 17px;
     height: $nav-height;
-    top: 8px;
-    left: 8px;
-    right: 8px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 8px;
     bottom: auto;
     position: fixed;
     display: inline-flex;
-    justify-content: space-between;
     flex-direction: row;
+    z-index: 99;
     img.icon {
         max-height: $nav-item-height;
         max-width: $nav-item-height;
@@ -94,6 +116,8 @@ a {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     div.icon_holder {
         height: $nav-item-height;
         width: $nav-item-height;
@@ -105,8 +129,9 @@ a {
     }
 }
 
-.icon_title {
-    margin: 1px;
+.a_holder {
+    white-space: nowrap;
+    font-size: 20px;
 }
 
 .contact_box {
@@ -129,6 +154,9 @@ a {
         height: $icon-size;
         padding: margin("m");
     }
+    .contact_title {
+        cursor: pointer;
+    }
     &.activated {
         height: max-content;
         width: max-content;
@@ -150,7 +178,10 @@ a {
 }
 
 .icon_title {
+    margin: 3px;
     padding: 0px margin("m");
+    width: 0;
+    cursor: default;
 }
 
 .icon_title li {
@@ -179,9 +210,212 @@ a {
         max-width: $icon-size;
         display: block;
         margin: auto;
+        cursor: pointer;
     }
 }
 
 .contact_title {
     padding: margin("l");
+}
+
+.main {
+    padding-top: 70px;
+    background-color: white;
+}
+
+.opening {
+    padding: 6vw 10vw 0 10vw;
+    min-height: 45vw;
+    p,
+    h1,
+    h2 {
+        font-weight: bold;
+        margin-block-end: 0px;
+        margin-block-start: 1em;
+    }
+    p {
+        font-size: 3vw;
+    }
+    h2 {
+        font-size: 4vw;
+    }
+    h1 {
+        font-size: 8vw;
+        margin-block-start: 0.3em;
+        cursor: pointer;
+    }
+    .pause_writing:after {
+        content: " ";
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url(../img/blinking_cursor.gif);
+        background-position: center;
+        margin-left: 0.1em;
+        padding-left: 0.62em;
+    }
+    .writing:after {
+        content: " ";
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url(../img/cursor.png);
+        background-position: center;
+        margin-left: 0.1em;
+        padding-left: 0.62em;
+    }
+    &.scrollHide {
+        opacity: 1;
+    }
+}
+
+.opening_background {
+    width: 0;
+    height: 0;
+    overflow: visible;
+    display: block;
+}
+
+.opening_background>img {
+    display: block;
+    width: 45vw;
+    height: 45vw;
+    position: relative;
+    top: -3vw;
+    left: 35vw;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.opening_background>img.show {
+    opacity: 20%;
+    transition: opacity 1s;
+}
+
+.about_me {
+    color: white;
+    margin-top: 5vw;
+    padding-top: 70px;
+    padding-bottom: 10vw;
+    background-color: black;
+    background-image: url(../img/matrix_background3.gif);
+}
+
+.about_me>h1 {
+    font-size: 6vw;
+    text-align: center;
+    margin-bottom: 5vw;
+}
+
+.about_me>p {
+    font-size: 2vw;
+    line-height: 3vw;
+    margin: 2vw 10vw;
+}
+
+.why_me {
+    padding-top: 70px;
+    padding-left: 8vw;
+    padding-right: 8vw;
+    h1 {
+        text-align: center;
+        font-size: 5vw;
+    }
+}
+
+.skills {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    .skill-table {
+        margin-right: 14vw;
+        width: 100%;
+        border-collapse: collapse;
+        height: 40vw;
+        table-layout: fixed;
+    }
+    tr:first-child {
+        height: 100%;
+        padding: 3px;
+        vertical-align: bottom;
+        border-right: solid black 0.2vw;
+    }
+    tr:last-child {
+        border-top: solid black 0.2vw;
+        height: 5vw;
+        h3 {
+            margin: 0;
+        }
+    }
+    h3 {
+        font-size: 1.6vw;
+        font-weight: normal;
+    }
+    h4 {
+        font-size: 1.2vw;
+        font-weight: normal;
+        strong {
+            font-weight: bold;
+            font-size: 1.4vw;
+        }
+    }
+}
+
+.lvl-bar {
+    background-color: gray;
+    width: 2vw;
+    margin: auto;
+}
+
+@for $i from 0 through 10 {
+    .lvl-bar.lvl#{$i}0 {
+        height: #{$i}0%;
+    }
+}
+
+.lvl-title-bar {
+    height: 42vw;
+    display: inline-flex;
+    flex-direction: column;
+    justify-items: stretch;
+    width: 0;
+    overflow: visible;
+    margin: 0;
+    z-index: 1;
+}
+
+.lvl-title {
+    flex-basis: 100%;
+    text-align: start;
+    width: 15vw;
+    padding-left: 70vw;
+    border-top: black dashed 0.1vw;
+    h4 {
+        display: inline-block;
+        margin-left: 0.5em;
+        margin-top: -3.5vw;
+        margin-bottom: 0;
+        height: 7vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        vertical-align: middle;
+    }
+    span {
+        background-color: white;
+        padding-left: 0.5em;
+    }
+}
+
+.projects {
+    color: white;
+    margin-top: 5vw;
+    padding-top: 70px;
+    padding-bottom: 10vw;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    background-color: gray;
+    height: 50vw;
+    h1 {
+        padding-top: 3vw;
+        font-size: 5vw;
+    }
 }
